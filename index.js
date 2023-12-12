@@ -25,14 +25,20 @@ document.addEventListener("DOMContentLoaded", ()=>{
         //if(ballY>400 - 20 || ballY <= 0) dy *= -1;
 
 
+        //collision of ball and paddle
+        if(ballX<paddle.offsetLeft+paddle.offsetWidth &&
+            ballY>paddle.offsetTop && 
+            ballY - ball.offsetHeight<paddle.offsetTop+paddle.offsetHeight)
+
         if(ballX>table.offsetWidth-ball.offsetWidth || ballX <= 0) dx*= -1; //change in x-direction
         if(ballY>table.offsetHeight-ball.offsetHeight || ballY <= 0) dy*= -1; //change in y-direction
-    }, 1);
+    }, 50);
 
 let paddleY=0;
 let dPy=5; //displacement for paddle in y-direction
 
 document.addEventListener("keydown", (event)=>{
+    event.preventDefault(); //prevent the execution of the default event behaviour
     if(event.keyCode==38 && paddleY>0){
         //up
         paddleY+=(-1)*dPy;
